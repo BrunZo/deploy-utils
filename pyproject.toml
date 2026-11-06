@@ -1,0 +1,24 @@
+[project]
+name = "deploy-utils-fs"
+version = "0.1.0"
+description = "Small authenticated file browser over a host directory"
+requires-python = ">=3.12"
+# Keep in sync with requirements.txt, which the Dockerfile installs.
+dependencies = [
+    "flask>=3.0,<4.0",
+    "gunicorn>=22.0,<24.0",
+    "sqlalchemy>=2.0,<3.0",
+]
+
+[dependency-groups]
+dev = ["ruff"]
+
+[tool.ruff]
+target-version = "py312"
+# Modules are flat (`import auth`, `from engine import ...`), so this
+# directory is the import root whatever folder the editor opened.
+src = ["."]
+
+[tool.ruff.lint.isort]
+# The code sorts `import x` and `from x import y` together within a section.
+force-sort-within-sections = true
